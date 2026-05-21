@@ -1,0 +1,4 @@
+/venv/
+.env
+/DataBase/
+/chroma_db/
