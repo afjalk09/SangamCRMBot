@@ -1,3 +1,6 @@
 dotenv
 langchain_google_genai
 langchain
+langchain-chroma
+langchain_huggingface
+mysql.connector
