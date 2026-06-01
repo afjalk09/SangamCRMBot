@@ -172,7 +172,21 @@ if user asks something that is not in the retrieved context, say "Sorry, I don't
     # EXECUTE SQL
     # ======================================
 
+    BLOCKED_KEYWORDS = [
+    "delete",
+    "drop",
+    "truncate",
+    "alter",
+    "insert",
+    "update"
+]
+
+
     try:
+       sql_lower = sql_query.lower() 
+       if any(keyword in sql_lower for keyword in BLOCKED_KEYWORDS):
+            print("\nError: this type of operation is not allowed.")
+       else:
         cursor.execute(sql_query)
 
         results = cursor.fetchall()
