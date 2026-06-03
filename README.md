@@ -79,7 +79,7 @@ Embeds:
 | Gemini / OpenAI LLM    | SQL generation         |
 | MySQL                  | CRM database           |
 | dotenv                 | Environment management |
-
+   flask | frontend
 ---
 
 # Project Architecture
@@ -109,12 +109,18 @@ Formatted Results
 ```text
 SangamCRM_Bot/
 │
-├── crmAgent.py               # Main AI SQL agent
-├── embedding.py              # Schema embedding pipeline
-├── validator.py              # SQL validation logic
+├── static/
+│   ├── style.css
+│   └── script.js
+│
+├── templates/
+│   └── index.html
+│
+├── agent.py
+├── liveEmbed.py
 ├── requirements.txt
-├── .env
-├── crm_vector_db/            # ChromaDB persistence
+├── .env   (do NOT push)
+├── RealSangamCrmdb/ (do NOT push)
 └── README.md
 ```
 
@@ -131,7 +137,7 @@ DB_PASSWORD=your_password
 DB_NAME=sangam_crm
 
 GOOGLE_API_KEY=your_gemini_key
-HF_TOKEN=your_huggingface_token
+
 ```
 
 ---
@@ -198,7 +204,7 @@ This will:
 # Running AI Agent
 
 ```bash
-python crmAgent.py
+python app.py.py
 ```
 
 ---
