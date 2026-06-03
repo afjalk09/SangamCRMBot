@@ -1,6 +1,7 @@
 dotenv
 langchain_google_genai
 langchain
+<<<<<<< HEAD
 flask
 request
 langchain_huggingface
@@ -9,3 +10,8 @@ rich
 dotenv
 mysql.connector
 transformers
+=======
+langchain-chroma
+langchain_huggingface
+mysql.connector
+>>>>>>> 85cd58f5d9cbb0c88cba5d616db2e7961b19ed6c
