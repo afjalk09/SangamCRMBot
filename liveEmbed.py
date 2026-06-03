@@ -1,9 +1,6 @@
 import os
 from dotenv import load_dotenv
-
-import mysql.connector
-
-
+from DB_conn import get_connection
 from langchain_core.documents import Document
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -14,13 +11,7 @@ load_dotenv()
 # ==========================================
 # MYSQL CONNECTION
 # ==========================================
-
-db = mysql.connector.connect(
-    host=os.getenv("DB_HOST"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    database=os.getenv("DB_NAME")
-)
+db = get_connection()
 
 cursor = db.cursor()
 
