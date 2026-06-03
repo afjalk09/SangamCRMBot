@@ -1,3 +1,11 @@
 dotenv
 langchain_google_genai
 langchain
+flask
+request
+langchain_huggingface
+langchain_chroma
+rich
+dotenv
+mysql.connector
+transformers

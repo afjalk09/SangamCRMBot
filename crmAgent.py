@@ -6,7 +6,7 @@ import mysql.connector
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from extract_sql import extract_sql
 
 from langchain_chroma import Chroma
 
@@ -59,30 +59,6 @@ retriever = vectordb.as_retriever(
     search_type="mmr",
     search_kwargs={"k": 4}
 )
-
-
-
-
-
-
-def extract_sql(text):
-
-    # Remove markdown
-    text = text.replace("```sql", "")
-    text = text.replace("```", "")
-
-    # Match WITH ... ; OR SELECT ... ;
-    match = re.search(
-        r"((WITH[\s\S]*?;)|(SELECT[\s\S]*?;))",
-        text,
-        re.IGNORECASE
-    )
-
-    if match:
-        return match.group(1).strip()
-
-    return text.strip()
-
 
 # ==========================================
 # QUESTION LOOP
@@ -184,8 +160,8 @@ if user asks something that is not in the retrieved context, say "Sorry, I don't
 
     try:
        sql_lower = sql_query.lower() 
-       if any(keyword in sql_lower for keyword in BLOCKED_KEYWORDS):
-            print("\nError: this type of operation is not allowed.")
+       if any(sql_lower.startswith(keyword) for keyword in BLOCKED_KEYWORDS):
+        print("\nError: this type of operation is not allowed.")
        else:
         cursor.execute(sql_query)
 

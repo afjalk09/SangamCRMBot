@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 import mysql.connector
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+
 
 from langchain_core.documents import Document
 from langchain_chroma import Chroma

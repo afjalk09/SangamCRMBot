@@ -13,5 +13,3 @@ model = ChatGoogleGenerativeAI(
     timeout=None,
     max_retries=2,
 )
-response = model.invoke("Why do parrots have colorful feathers?")
-print(response)
