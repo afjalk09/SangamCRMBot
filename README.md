@@ -335,11 +335,7 @@ LIMIT 1;
 
 ---
 
-# Author
 
-Afjal Khan
-
-AI Developer | CRM AI Integration Engineer
 
 ---
 
