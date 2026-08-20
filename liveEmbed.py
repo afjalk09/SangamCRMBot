@@ -1,9 +1,10 @@
 import os
 from dotenv import load_dotenv
 from DB_conn import get_connection
-from langchain_core.documents import Document
+
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
+
 
 load_dotenv()
 
@@ -35,7 +36,7 @@ for table in tables:
 
     table_name = table[0]
 
-    print(f"Processing Table: {table_name}")
+    # print(f"Processing Table: {table_name}")
 
     cursor.execute(f"DESCRIBE {table_name}")
 
@@ -56,37 +57,11 @@ for table in tables:
         table_context += f"\n- {col_name} ({col_type})"
 
     # print(table_context)
-    # ======================================
-    # ADD SAMPLE ROWS
-    # ======================================
 
-    # try:
-
-    #     cursor.execute(f"SELECT * FROM {table_name} LIMIT 2")
-
-    #     rows = cursor.fetchall()
-
-    #     table_context += "\n\nSAMPLE DATA:\n"
-
-    #     for row in rows:
-
-    #         table_context += f"\n{row}"
-
-    # except:
-    #     pass
-
-
-    # ======================================
-    # CREATE DOCUMENT
-    # ======================================
-
-    doc = Document(
-        page_content=table_context,
-        metadata={
-            "table_name": table_name
-            
-        }
-    )
+    doc ="\n\n".join([
+        table_context
+    ])
+    
 
     documents.append(doc)
 
